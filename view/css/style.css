@@ -1,0 +1,578 @@
+.error {
+    color: red;
+    font-family: arial;
+    font-size: 10pt;
+    font-style: italic;
+}
+
+
+body {
+    background-color: #F0F0FF;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+h1 {
+    font-size: 32pt;
+}
+
+#wrapper {
+    max-width: 100%;
+    margin: auto;
+    background-color: #FFFFFF;
+}
+
+#header {
+    background-repeat: no-repeat;
+    margin-bottom: 10px;
+}
+
+#contenido {
+    padding: 20px;
+}
+/*CRUD SECCION*/
+.Button_green {
+    background-color: green;
+    -moz-border-radius: 28px;
+    -webkit-border-radius: 28px;
+    border-radius: 28px;
+    border: 1px solid green;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 17px;
+    padding: 16px 31px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #2f6627;
+}
+
+.Button_green:hover {
+    background-color: greenyellow;
+}
+
+.Button_green:active {
+    position: relative;
+    top: 1px;
+}
+
+.Button_blue {
+    background-color: blue;
+    -moz-border-radius: 28px;
+    -webkit-border-radius: 28px;
+    border-radius: 28px;
+    border: 1px solid blue;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 17px;
+    padding: 16px 31px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #2f6627;
+}
+
+.Button_blue:hover {
+    background-color: cyan;
+}
+
+.Button_blue:active {
+    position: relative;
+    top: 1px;
+}
+
+.Button_red {
+    background-color: crimson;
+    -moz-border-radius: 28px;
+    -webkit-border-radius: 28px;
+    border-radius: 28px;
+    border: 1px solid crimson;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 17px;
+    padding: 16px 31px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #2f6627;
+}
+
+.Button_red:hover {
+    background-color: red;
+}
+
+.Button_red:active {
+    position: relative;
+    top: 1px;
+}
+
+#buttons-crud {
+    white-space: nowrap;
+}
+
+/*Product Carousel*/
+.product{
+    cursor: pointer;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.product:hover {
+    transform: scale(1.1);
+}
+.carousel-control-prev-icon, .carousel-control-next-icon{
+    background-color: black;
+    pointer-events: all;
+}
+.carousel-control-prev, .carousel-control-next{
+    pointer-events: none;
+}
+/*CATEGORIES IMG*/
+
+.categories {
+    margin-top: 50px;
+}
+
+.img-categ {
+    margin-bottom: 25px;
+}
+
+.img-categ:hover .image {
+    opacity: 0.3;
+    cursor: pointer;
+}
+
+.img-categ:hover .middle {
+    opacity: 1;
+}
+
+.text {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    padding: 8px 16px;
+}
+
+/*Product List*/
+body {
+    background: #eee;
+}
+
+.wrapper {
+    margin-top: 30px;
+}
+
+.product-shop .card {
+    border: 1px solid #eee;
+    cursor: pointer;
+    min-height: 100%;
+}
+
+.weight {
+    margin-top: -65px;
+    transition: all 0.5s;
+}
+
+.weight small {
+    color: #e2dede;
+}
+
+.buttons {
+    padding: 10px;
+    background-color: #d6d4d44f;
+    border-radius: 4px;
+    position: relative;
+    margin-top: 7px;
+    opacity: 0;
+    transition: all 0.8s;
+}
+
+.dot {
+    height: 14px;
+    width: 14px;
+    background-color: green;
+    border-radius: 50%;
+    position: absolute;
+    left: 27%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 8px;
+    color: #fff;
+    opacity: 0;
+}
+
+.cart-button {
+    height: 48px;
+    font-size: 12px !important;
+}
+
+.cart-button:focus {
+    box-shadow: none;
+}
+
+.cart {
+    position: relative;
+    height: 48px !important;
+    width: 50px;
+    margin-right: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    padding: 11px;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: 1s ease-in-out;
+    overflow: hidden;
+}
+
+.cart-button.clicked span.dot {
+    animation: item 0.3s ease-in forwards
+}
+
+@keyframes item {
+    0% {
+        opacity: 1;
+        top: 30%;
+        left: 30%;
+    }
+
+    25% {
+        opacity: 1;
+        left: 26%;
+        top: 0%;
+    }
+
+    50% {
+        opacity: 1;
+        left: 23%;
+        top: -22%;
+    }
+
+    75% {
+        opacity: 1;
+        left: 19%;
+        top: -18%;
+    }
+
+    100% {
+        opacity: 1;
+        left: 14%;
+        top: 28%;
+    }
+}
+
+.product-shop .card:hover .buttons {
+    opacity: 1;
+}
+
+.product-shop .card:hover .weight {
+    margin-top: 10px;
+}
+
+.product-shop .card:hover {
+    transform: scale(1.04);
+    z-index: 2;
+    overflow: hidden;
+    padding-bottom: 100px;
+}
+
+/*ADD FROM CARDS*/
+.detail {
+    font-size: 80%;
+    color: black !important;
+}
+.product-shop span {
+    color: #6699cc;
+}
+.game-name {
+    font-size: 120%;
+
+}
+
+.product-shop {
+    margin-bottom: 30px;
+
+}
+
+.product-shop:hover {
+    margin-bottom: 30px;
+
+}
+
+#search-container .card ul li:hover {
+    background-color: #ededed;
+}
+/*GRID CSS*/
+
+.colP {
+grid-area: main;
+}
+.colF {
+grid-area: sidebar;
+}
+
+.shop-content {
+display: grid;
+grid-template-columns: 20% 80%;
+grid-template-rows: auto;
+grid-template-areas: 
+  
+    "sidebar main"
+
+}
+
+/*MAPS GEO*/
+/* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+#map {
+    height: 50vh;
+}
+
+/* Optional: Makes the sample page fill the window. 
+    html,
+    body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}*/
+      
+.custom-map-control-button {
+    appearance: button;
+    background-color: #fff;
+    border: 0;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    margin: 10px;
+    padding: 0 0.5em;
+    height: 40px;
+    font: 400 18px Roboto, Arial, sans-serif;
+    overflow: hidden;
+}
+.custom-map-control-button:hover {
+    background: #ebebeb;
+}
+
+/* FOOTER*/
+.footer{
+    max-width: 100% !important;
+    min-width: 100% !important;
+	background-color:#CCCCCC;
+	font-family:sans-ser;
+}
+#links {
+	text-decoration:none;
+	color:black;
+	font-family: Arial;
+	overflow:hidden;
+	text-align:center;
+	text-shadow:0 0 5px grey;
+	}
+#links:hover{
+	text-shadow:0 0 0px grey;
+}
+
+.footer input{
+	height:34px;
+	width:65%;
+	background-color:#FFF;
+	color:#000;
+	font-family:arial;
+	}
+.footer button{
+	font-family:arial;
+    text-shadow:0 0 5px #000000;
+	margin-top:5px;}
+
+.footer .fa {
+  font-size: 30px;
+  width: 55px;
+  text-align: center;
+  text-decoration: none;
+  border-radius:50%;
+}
+
+.footer .fa:hover {
+	border-radius:1px solid #fff;
+}
+
+.footer .fa-facebook {
+  color: black;
+  text-shadow:0 0 9px grey;
+}
+.footer .fa-facebook:hover{
+  background: #3B5998;
+  color: black;
+}
+.footer .fa-twitter {
+    color: black;
+  text-shadow:0 0 10px grey;
+
+}
+.footer .fa-twitter:hover{
+  background: #55ACEE;
+  color: black;
+}
+.footer .fa-linkedin {
+    color: black;
+  text-shadow:0 0 9px grey;
+}
+.footer .fa-linkedin:hover{
+  background: #007bb5;
+  color: black;
+}
+
+.footer .fa-youtube {
+    color: black;
+  text-shadow:0 0 10px grey;
+}
+.footer .fa-youtube:hover{
+  background: #bb0000;
+  color: black;
+}
+.footer .fa-pinterest {
+    color: black;
+  text-shadow:0 0 9px grey;
+}
+.footer .fa-pinterest:hover{
+  background: #cb2027;
+  color: black;
+}
+
+#bottom-line{
+	height:1px;
+	background-color:#f1f1f1;}
+
+/*FOOTER: CONTACT*/
+#form{
+	margin-top:100px;
+}
+#mainform{
+	background-color:#fff;
+	border:px solid #f1f1f1;
+	height:auto;
+	opacity:.7;
+	animation-name:form;
+	animation-duration:1s;
+	transition:ease-in-out .3s;}
+@keyframes form{
+	0%{ opacity:0;}
+	100%{}
+}
+
+#mainform:hover{
+	box-shadow:0 0 20px #CCCCCC;
+	opacity:1;
+	}
+footer .fa {
+  font-size: 60px;
+  text-align: center;
+  text-decoration: none;
+  border-radius:50%;
+}
+
+footer .fa:hover {
+	border-radius:1px solid #fff;
+}
+
+footer .fa-facebook {
+  color: black;
+  text-shadow:0 0 5px grey;
+}
+footer .fa-facebook:hover{
+  background: #3B5998;
+  color: black;
+  text-decoration:none;
+}
+	
+footer .fa-twitter {
+  color: black;
+  text-shadow:0 0 5px grey;
+  text-decoration:none;
+}
+footer .fa-twitter:hover{
+  background: #55ACEE;
+  color: white;
+  text-decoration:none;
+}
+
+footer .fa-youtube {
+  color: black;
+  text-shadow:0 0 5px grey;
+}
+footer .fa-youtube:hover{
+  background: #bb0000;
+  color: black;
+}
+
+#mail{
+	border-radius:50%;
+	height:40px;
+	}
+#mail:hover{
+	box-shadow:0 0 2px grey;
+	}
+#phone{
+	border-radius:50%;
+	height:40px;
+
+}
+#phone:hover{
+	box-shadow:0 0 2px grey;
+}
+
+.contact-us{
+	animation-name:contact-us;
+	animation-duration:1s;
+	}
+
+/*NAVBAR*/
+#header button{
+    color: white;
+    border-color: grey;
+    background-color: grey;
+}
+
+#header button:hover{
+    color: grey;
+    border-color: grey;
+    background-color: white;
+}
+
+/*MODAL LOGIN*/
+
+  @media (min-width: 576px) {
+    .modal-dialog {
+      max-width: 400px;
+    }
+    .modal-dialog .modal-content {
+      padding: 1rem;
+    }
+  }
+  .modal-header .close {
+    margin-top: -1.5rem;
+  }
+   
+  .form-title {
+    margin: -2rem 0rem 2rem;
+  }
+   
+  .btn-round {
+    border-radius: 3rem;
+  }
+   
+  .delimiter {
+    padding: 1rem;
+  }
+   
+  .social-buttons .btn {
+    margin: 0 0.5rem 1rem;
+  }
+   
+  .signup-section {
+    padding: 0.3rem 0rem;
+  }
+  .btn-close {
+    background-color: white !important;
+  }
