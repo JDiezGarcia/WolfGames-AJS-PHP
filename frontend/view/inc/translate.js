@@ -25,7 +25,7 @@ function changeLang(Flang) {
     localStorage.setItem('app-lang', lang);
 
     $.ajax({
-        url: '/jquery_php/view/inc/lang/' + lang + '.json',
+        url: '/angularjs_php/frontend/view/inc/lang/' + lang + '.json',
         type: 'GET',
         dataType: 'JSON',
         success: function (data) {
@@ -35,9 +35,9 @@ function changeLang(Flang) {
     })
 }
 
-$(document).ready(function() {
-    changeLang();
-    $('#lang-select').change(function() {
-        changeLang($('#lang-select').val());
+ angular.element(document).ready(function () {
+        changeLang();
+        $('#lang-select').change(function() {
+            changeLang($('#lang-select').val());
+        });;
     });
-});

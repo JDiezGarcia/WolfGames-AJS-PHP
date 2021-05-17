@@ -1,13 +1,13 @@
 <?php
     $path = $_SERVER['DOCUMENT_ROOT'];
-    include($path . "/jquery_php/module/home/model/DAOhome.php");
+    include($path . "/angularjs_php/backend/module/home/model/DAOhome.php");
     //include($path . "module/user/model/DAOhome.php");
     session_start();
     switch($_GET['op']){
         case 'carousel';
             try{
                 $daohome = new DAOHome();
-            	$rdo = $daohome->select_all_games($_POST['offset']);
+            	$rdo = $daohome->select_all_games($_GET['param']);
             }catch (Exception $e){
                 echo json_encode("error " + $e);
                 exit;

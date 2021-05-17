@@ -1,6 +1,6 @@
 <?php
 	$path = $_SERVER['DOCUMENT_ROOT'];
-    include($path . "/jquery_php/model/connect.php");
+    include($path . "/angularjs_php/backend/model/connect.php");
 	class DAOHome{
 
 		function select_all_games($offset){

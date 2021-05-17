@@ -1,0 +1,35 @@
+<div class="home-page">
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner" id="carousel-game">
+            <!-- CAROUSEL -->
+            <div class="carousel-item active">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-2 carusel-item" ng-repeat="slide in slides"
+                        ng-click="redirectShopBrand('{{slide.gameCod}}')">
+                            <img ng-src="/angularjs_php/frontend/view/img/games/{{slide.gameImg}}"
+                                class="d-block w-100 product">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true" ng-click="changeCarousel('{{-1}}')"></span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true" ng-click="changeCarousel('{{1}}')"></span>
+        </a>
+    </div>
+
+    <div class="container categories">
+        <!-- PLATFORMS -->
+        <div class="row-cat row" ng-repeat="array in arrays">
+            <div class="img-categ col-6" id="platform" ng-repeat="platf in array">
+                <img ng-src="/angularjs_php/frontend/view/img/platforms/{{platf.platformImg}}" class="image" style="width:100%"
+                ng-click="redirectShopPlatform('{{platf.platformCod}}')">
+            </div>
+        </div>
+    </div>
+
+</div>

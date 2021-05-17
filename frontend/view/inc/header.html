@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
 
-        <a class="navbar-brand" href="index.php?page=homepage">
+        <a class="navbar-brand" href="#/home">
             <h1><img src="/jquery_php/view/img/logo.png" alt="logo"></h1>
         </a>
 
@@ -13,7 +13,27 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
             <div id="navbar-menu">
-
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link home" href="#/home" data-tr="Home"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link shop" href="#/shop" data-tr="shop">
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link services" href="#/services" data-tr="Services">
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link aboutus" href="#/aboutus" data-tr="AboutUs"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link contactus" href="#/contact" data-tr="Contact"></a>
+                    </li>
+                </ul>
             </div>
 
             <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="navbar-lang">
@@ -59,13 +79,11 @@
         </div>
     </div>
 
-    <div class="modal fade" id="log-modal" tabindex="-1" role="dialog" aria-labelledby="login"
-        aria-hidden="true">
-    
+    <div class="modal fade" id="log-modal" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="true">
+
     </div>
 
-    <div class="modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="login"
-        aria-hidden="true">
-    
+    <div class="modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="true">
+
     </div>
 </nav>
