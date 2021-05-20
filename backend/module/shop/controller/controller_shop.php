@@ -52,7 +52,9 @@
                 } else {
                     $filters = json_decode($_GET['filters']);
                 }
-            	$rdo = $daoshop->filtered_products($filters, $_GET['platform'], $_GET['search'], $_POST['offset']);
+
+                $search = $filters['search'];
+            	$rdo = $daoshop->filtered_products($filters['filters'], $filters['platform-cod'], $filters['search'], $_POST['offset']);
             }catch (Exception $e){
                 echo json_encode("error " + $e);
                 exit;
@@ -86,10 +88,10 @@
         }
         break;
         
-        case 'show-product';
+        case 'details';
         try{
             $daoshop = new DAOShop();
-            $rdo = $daoshop->select_product($_GET['product-id']);
+            $rdo = $daoshop->select_product($_GET['gameCod']);
 
         }catch (Exception $e){
             echo json_encode("error " + $e);

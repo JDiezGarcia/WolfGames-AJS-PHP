@@ -1,5 +1,28 @@
-<div class="shop-page">
+<div class="shop-page" style="margin-top: 20px;margin-bottom: 20px;">
     <div id="shop-products" class="container">
-        <!-- Categories -->
+        <div class="row">
+            <div class="col-4">
+                <img style="max-width: 100%; display:block;"
+                    ng-src="/angularjs_php/frontend/view/img/games/{{data.gameImg}}"></img>
+            </div>
+            <div class="col-8" style="margin: auto;">
+                <fieldset class="border p-2">
+                    <legend class="control-label customer-legend pl-1 product-title">{{data.gameName}}</legend>
+                    <h5 class="price"><span style="font-weight: bold;">Price:</span> <span>{{data.price}}€</span></h5>
+                    <p class="views"><span style="font-weight: bold;">Views:</span> {{data.views}}</p>
+                    <p class="release"><span style="font-weight: bold;">Release:</span> {{data.relDate}}</p>
+                    <p class="description"><span style="font-weight: bold;">Description:</span> {{data.description}}</p>
+                    <p class="platforms"><span style="font-weight: bold;">Platforms:</span>
+                        <span class="platform" data-toggle="tooltip" title="">coming soon</span>
+                    </p>
+                    <div class="action">
+                        <button class="add-to-cart btn btn-default" type="button" style="border: solid 1px black"><span
+                                class="fa fa-shopping-cart"></span>
+                            Add to Cart..</button>
+                        <button class="like btn btn-default" type="button" style="border: solid 1px black"><span class="fa fa-heart"></span></button>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
     </div>
 </div>

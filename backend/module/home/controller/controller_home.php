@@ -7,7 +7,7 @@
         case 'carousel';
             try{
                 $daohome = new DAOHome();
-            	$rdo = $daohome->select_all_games($_GET['param']);
+            	$rdo = $daohome->select_all_games($_GET['offset']);
             }catch (Exception $e){
                 echo json_encode("error " + $e);
                 exit;

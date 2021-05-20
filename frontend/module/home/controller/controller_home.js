@@ -42,7 +42,7 @@ wolfgames.controller('controller_home', function($scope, services, allPlatforms,
 
         localStorage.carouselOffset = newOffset;
         offset = newOffset * limit;
-        services.get2('home', 'carousel', offset )
+        services.get('home', 'carousel', offset )
         .then(function(games) {
             $scope.slides = games.games;
         }, function(error) {
@@ -54,13 +54,12 @@ wolfgames.controller('controller_home', function($scope, services, allPlatforms,
     //-----------[REDIRECTION SHOP PLATFORMS]------------\\
     $scope.redirectShopPlatform = function(platf) {
         localStorage.platfShop = platf;
-        location.href = "#/shop";
+        location.href = "#/shop/filters:platform="+platf;
     };
 
     //-----------[REDIRECTION SHOP DETAILS]------------\\
     $scope.redirectShopDetails = function(game) {
-        localStorage.gameDetails = game;
-        location.href = "#/shop";
+        location.href = "#/shop/details/"+game;
     };
 });
 
