@@ -14,7 +14,7 @@ wolfgames.controller('controller_home', function($scope, services, allPlatforms,
         arr[row].push(allPlatforms[i]);
     };
 
-    //-----------[OBJECT INJECTIONS]------------\\
+    //-----------[DATA INJECTIONS]------------\\
     $scope.arrays = arr;
     $scope.slides = viewedGames.games;
 
@@ -42,7 +42,7 @@ wolfgames.controller('controller_home', function($scope, services, allPlatforms,
 
         localStorage.carouselOffset = newOffset;
         offset = newOffset * limit;
-        services.get('home', 'carousel', offset )
+        services.get('home', 'carousel', {offset: offset} )
         .then(function(games) {
             $scope.slides = games.games;
         }, function(error) {
@@ -51,13 +51,11 @@ wolfgames.controller('controller_home', function($scope, services, allPlatforms,
 
     };
 
-    //-----------[REDIRECTION SHOP PLATFORMS]------------\\
+    //-----------[PAGE REDIRECTION]------------\\
     $scope.redirectShopPlatform = function(platf) {
         localStorage.platfShop = platf;
         location.href = "#/shop/filters:platform="+platf;
     };
-
-    //-----------[REDIRECTION SHOP DETAILS]------------\\
     $scope.redirectShopDetails = function(game) {
         location.href = "#/shop/details/"+game;
     };

@@ -1,58 +1,54 @@
 var wolfgames = angular.module('wolfgames', ['ngRoute', 'ngAnimate', 'ngTouch', 'ngSanitize', 'toastr', 'ui.bootstrap']);
-//////
+//----- TRADUCTION I18N -----\\
+//--- http://jsfiddle.net/arleray/pmbyst0n/ ---\\
 wolfgames.config(['$routeProvider', '$locationProvider',
     function ($routeProvider, $locationProvider) {
         $routeProvider
             .when("/home", {
-                //TRADUCTION I18N
-                //http://jsfiddle.net/arleray/pmbyst0n/
                 templateUrl: "frontend/module/home/view/view_home.html",
                 controller: "controller_home",
                 resolve: {
                     viewedGames: async function (services) {
-                        data = await services.get('home', 'carousel', {offset: 0});
+                        data = await services.get('home', 'carousel', { offset: 0 });
                         return data;
                     },
                     allPlatforms: function (services) {
-                        return services.get('home', 'platformsImg');
-                    }
-                }// end_resolve
-            }).when("/shop", {
-                templateUrl: "frontend/module/shop/view/view_shop.html",
-                controller: "controller_shop",
-                resolve: {
-                    games: function (services) {
-                        return services.get('shop', 'all-products');
-                    }/*,
-                    favs: function (services) {
-                        return services.post('shop', 'sendFavs', { JWT: localStorage.token });
-                    },
-                    cart: function (services) {
-                        return services.post('cart', 'selectCart', { JWT: localStorage.token });
-                    }*/
-                }
-            }).when('/shop/:filters', {
-                templateUrl: "frontend/module/shop/view/view_shop.html",
-                controller: "controller_shop",
-                resolve: {
-                    gameFilters: async function (services, $route) {
-                        data = await services.get('shop', 'filtered-products', JSON.parse($route.current.params.filters))
+                        data = services.get('home', 'platformsImg');
                         return data;
-                    }/*,
+                    }
+                }// END_RESOLVE
+            })
+            .when("/shop", {
+                templateUrl: "frontend/module/shop/view/view_shop.html",
+                controller: "controller_shop",
+                resolve: {
+                    games: async function (services, $route) {
+                        var params = $route.current.params;
+                        var page = params.page;
+                        if (Object.keys(params).length > 0) {
+                            params = JSON.stringify(params);
+                            data = await services.get('shop', 'products', { filters: params, offset: page});
+                        } else {
+                            data = await services.get('shop', 'products', { offset: 0 });
+                        }
+                        console.log(data);
+                        return data;
+                    }
+                    /*,
                     favs: function (services) {
                         return services.post('shop', 'sendFavs', { JWT: localStorage.token });
                     },
                     cart: function (services) {
                         return services.post('cart', 'selectCart', { JWT: localStorage.token });
                     }*/
-                }// end_resolve
+                }// END_RESOLVE
             })
             .when('/shop/details/:gameCod', {
                 templateUrl: "frontend/module/shop/view/view_shopDetails.html",
                 controller: "controller_shopDetails",
                 resolve: {
                     game: async function (services, $route) {
-                        data = await services.get('shop', 'details', {gameCod: $route.current.params.gameCod})
+                        data = await services.get('shop', 'details', { gameCod: $route.current.params.gameCod })
                         return data;
                     }/*,
                     favs: function (services) {
@@ -61,7 +57,7 @@ wolfgames.config(['$routeProvider', '$locationProvider',
                     cart: function (services) {
                         return services.post('cart', 'selectCart', { JWT: localStorage.token });
                     }*/
-                }// end_resolve
+                }// END_RESOLVE
             })
             /*.when("/contact", {
                     templateUrl: "frontend/module/contact/view/view_contact.html", 

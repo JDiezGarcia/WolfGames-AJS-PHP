@@ -1,5 +1,77 @@
 <div class="shop-page">
     <div id="shop-products" class="container">
-        <!-- Categories -->
+        <!-- SHOP PAGE -->
+        <div class="shop-content">
+            <div class="colF" style="margin-right: 10px;">
+                <!-- FILTERS -->
+                <h2>Filters</h2>
+                <fieldset class="border p-2">
+                    <div class="platforms">
+                        <h3 data-tr="platforms">Platforms</h3>
+                        <div class="form-check filters-platforms">
+                            <div class="platforms-filter" ng-repeat="platform in arrPlatforms">
+                                <input class="form-check-input" type="radio" name="platforms" value=""
+                                    id="{{platform.platformCod}}">
+                                <label class="form-check-label" data-tr="{{platform.platformCod}}"
+                                    for="{{platform.platformCod}}">
+                                    {{platform.platformName}}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="genre">
+                        <h3 data-tr="genre">Genre</h3>
+                        <div class="form-check filters-genres">
+                            <div class="genre-filter" ng-repeat="genre in arrFilters">
+                                <input class="form-check-input" type="checkbox" value="" id="{{genre.genreName}}">
+                                <label class="form-check-label" data-tr="{{genre.genreName}}" for="{{genre.genreName}}">
+                                    {{genre.genreName}}
+                                </label><span>(soon)</span>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="colP">
+                <!-- PRODUCT LIST -->
+                <div class="row-g-1 row">
+                    <div class="col-3 product-shop" ng-repeat="game in arrGames">
+                        <div class="card p-3" id="{{game.gameCode}}">
+                            <div>
+                                <img ng-src="/angularjs_php/frontend/view/img/games/{{game.gameImg}}" width="100%" />
+                                <div class="product-details" id="{{game.gameCod}}">
+                                    <span class="fw-bold d-block game-name"
+                                        style="display:inline-block">{{game.gameName}}</span>
+                                    <span data-tr="price"></span><span>: <span
+                                            class="detail">{{game.price}}€</span></span><br>
+                                    <span data-tr="pgi"></span><span>: <span class="detail">{{game.pgi}}</span></span>
+                                    <div class="buttons d-flex flex-row">
+                                        <div class="cart"><i class="fa fa-shopping-cart"></i></div>
+                                        <button class="btn btn-success cart-button btn-block" id="{{game.gameCod}}"
+                                            data-tr="view" ng-click="redirectShopDetails('{{game.gameCod}}')">View<span class="dot"></span></button>
+                                    </div>
+                                    <div class="weight"> <small>{{game.description}}</small></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="shop-pagination">
+                    <nav aria-label="pagination" class="pagination-shop">
+                        <ul class="pagination justify-content-end">
+                            <li class="page-item">
+                                <a class="page-link" aria-disabled="false" data-tr="first">First</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link">{{pagination}}</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" aria-disabled="false" data-tr="last">Last</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
