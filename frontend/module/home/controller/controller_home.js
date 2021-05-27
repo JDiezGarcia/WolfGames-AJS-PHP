@@ -53,8 +53,7 @@ wolfgames.controller('controller_home', function($scope, services, allPlatforms,
 
     //-----------[PAGE REDIRECTION]------------\\
     $scope.redirectShopPlatform = function(platf) {
-        localStorage.platfShop = platf;
-        location.href = "#/shop/filters:platform="+platf;
+        location.href = "#/shop?platforms="+platf;
     };
     $scope.redirectShopDetails = function(game) {
         location.href = "#/shop/details/"+game;

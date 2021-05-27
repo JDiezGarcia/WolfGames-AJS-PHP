@@ -15,7 +15,6 @@ wolfgames.factory("services", ['$http', '$q', function ($http, $q) {
             }
             params += "&"+i+"="+str;
         }
-        console.log(params);
         $http({
             method: 'GET',
             url: serviceBase + module + '/controller' + '/controller_' + module + '.php' + '?op=' + functi + params

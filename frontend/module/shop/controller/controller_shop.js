@@ -13,40 +13,41 @@ wolfgames.controller('controller_shop', function ($scope, $routeParams, $route, 
     $scope.arrGames = arrGames;
     $scope.arrPlatforms = arrPlatforms;
     $scope.arrGenres = arrGenres;
-    $scope.total = total;
+    $scope.total = pagination(total);
     $scope.allGenres = checkDisable(allGenres, arrGenres, "genres", "genreName");
     $scope.allPlatforms = checkDisable(allPlatforms, arrPlatforms, "platforms", "platformCod");
 
     //-----------[FILTER ROUTE APPLIES]------------\\
 
     $scope.filters = function (filter, type) {
-        if (type === "genre") {
-            let arr = $routeParams.genres;
-            if (typeof arr == "object") {
-                $routeParams.genres.push(filter);
-            } else if (arr) {
-                $routeParams.genres = [arr, filter];
+        var k = ['platforms', 'genres']
+        if (k.indexOf(type) !== -1) {
+            let arr = $routeParams[type];
+            if (arr) {
+                let i = arr.indexOf(filter);
+                if (i == -1) {
+                    $routeParams[type].push(filter);
+                } else {
+                    $routeParams[type].splice(i, 1);
+
+                    if (arr.length == 0) {
+                        $routeParams[type] = null;
+                    }
+                }
             } else {
-                $routeParams.genres = [filter];
+                $routeParams[type] = [filter];
             }
-        } else if (type === "platform") {
-            let arr = $routeParams.platforms;
-            if (typeof arr == "object") {
-                $routeParams.platforms.push(filter);
-            } else if (arr) {
-                $routeParams.platforms = [arr, filter];
-            } else {
-                $routeParams.platforms = [filter];
-            }
+            console.log($route)
+            $route.updateParams($routeParams);
+            $route.reload();
         }
-        $route.updateParams($routeParams);
-        $route.reload();
     }
 
     //-----------[FILTER CHECK AND DISABLE APPLIES]------------\\
     function checkDisable(allFilters, filters, type, key) {
         for (let i = 0; i < allFilters.length; i++) {
             let prop = '';
+            //---------[ADDING CHECKED ATTR]---------\\
             if (type in $route.current.params) {
                 if (typeof $route.current.params[type] == "object") {
                     for (let l = 0; l < $route.current.params[type].length; l++) {
@@ -64,6 +65,7 @@ wolfgames.controller('controller_shop', function ($scope, $routeParams, $route, 
                     }
                 }
             }
+            //---------[ADDING TOTALS AND DISABLED ATTR]---------\\
             let newFilter;
             if (filters) {
                 newFilter = filters.find(f => f[key] === allFilters[i][key]);
@@ -80,6 +82,15 @@ wolfgames.controller('controller_shop', function ($scope, $routeParams, $route, 
         }
         return allFilters;
     }
+
+    //----------[PAGINATION]----------\\
+    function pagination(total) {
+
+        let actualPage = $route.current.page;
+        let limit = 8;
+        let totalOffset = Math.ceil(total / limit) -1;
+    }
+
 
     //----------[PAGE REDIRECTION]-----------\\
     $scope.redirectShopDetails = function (game) {

@@ -11,7 +11,7 @@
                         <div class="form-check filters-platforms">
                             <div class="platforms-filter" ng-repeat="platform in allPlatforms">
                                 <input class="form-check-input" type="checkbox" value=""
-                                    id="{{platform.platformCod}}" ng-click="filters('{{platform.platformCod}}', 'platform')" ng-checked="platform.prop == 'checked'" ng-disabled="platform.prop == 'disabled'">
+                                    id="{{platform.platformCod}}" ng-click="filters('{{platform.platformCod}}', 'platforms')" ng-checked="platform.prop == 'checked'" ng-disabled="platform.prop == 'disabled'">
                                 <label class="form-check-label" data-tr="{{platform.platformCod}}"
                                     for="{{platform.platformCod}}">
                                     {{platform.platformName}}<span>({{platform.total}})</span>
@@ -23,7 +23,7 @@
                         <h3 data-tr="genre">Genre</h3>
                         <div class="form-check filters-genres">
                             <div class="genre-filter" ng-repeat="genre in allGenres">
-                                <input class="form-check-input" type="checkbox" value="" id="{{genre.genreName}}" ng-click="filters('{{genre.genreName}}', 'genre')" ng-checked="genre.prop == 'checked'" ng-disabled="genre.prop == 'disabled'">
+                                <input class="form-check-input" type="checkbox" value="" id="{{genre.genreName}}" ng-click="filters('{{genre.genreName}}', 'genres')" ng-checked="genre.prop == 'checked'" ng-disabled="genre.prop == 'disabled'">
                                 <label class="form-check-label" data-tr="{{genre.genreName}}" for="{{genre.genreName}}">
                                     {{genre.genreName}}
                                 </label><span>({{genre.total}})</span>
@@ -61,13 +61,13 @@
                     <nav aria-label="pagination" class="pagination-shop">
                         <ul class="pagination justify-content-end">
                             <li class="page-item">
-                                <a class="page-link" aria-disabled="false" data-tr="first">First</a>
+                                <a class="page-link" aria-disabled="false" data-tr="first" ng-click="changePage(0)">First</a>
                             </li>
                             <li class="page-item">
                                 <a class="page-link">{{pagination}}</a>
                             </li>
                             <li class="page-item">
-                                <a class="page-link" aria-disabled="false" data-tr="last">Last</a>
+                                <a class="page-link" aria-disabled="false" ng-click="changePage()" data-tr="last">Last</a>
                             </li>
                         </ul>
                     </nav>
