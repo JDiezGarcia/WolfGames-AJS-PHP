@@ -8,13 +8,8 @@
         case 'products';
             try{
                 $daoshop = new DAOShop();
-                $filters = $_GET['filters'];
-                if ($filters == "") {
-                    $filters = null; 
-                } else {
-                    $filters = json_decode($_GET['filters']);
-                }
-            	$rdo = $daoshop->select_products($filters['genres'], $filters['platform-cod'], $filters['search'], $_GET['offset']);
+                $filters = json_decode($_GET['filters'] ?? '{}', true);
+            	$rdo = $daoshop->select_products($filters['genres'], $filters['platforms'], $filters['search'], $_GET['offset']);
             }catch (Exception $e){
                 echo json_encode("error " + $e);
                 exit;

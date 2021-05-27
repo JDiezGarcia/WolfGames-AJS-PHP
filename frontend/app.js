@@ -25,8 +25,12 @@ wolfgames.config(['$routeProvider', '$locationProvider',
                     games: async function (services, $route) {
                         var params = $route.current.params;
                         var page = params.page;
+                        if (!page){
+                            page = 0;
+                        }
                         if (Object.keys(params).length > 0) {
-                            params = JSON.stringify(params);
+                            //params = JSON.stringify(params);
+                            console.log(params);
                             data = await services.get('shop', 'products', { filters: params, offset: page});
                         } else {
                             data = await services.get('shop', 'products', { offset: 0 });

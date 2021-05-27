@@ -9,12 +9,12 @@
                     <div class="platforms">
                         <h3 data-tr="platforms">Platforms</h3>
                         <div class="form-check filters-platforms">
-                            <div class="platforms-filter" ng-repeat="platform in arrPlatforms">
-                                <input class="form-check-input" type="radio" name="platforms" value=""
-                                    id="{{platform.platformCod}}">
+                            <div class="platforms-filter" ng-repeat="platform in allPlatforms">
+                                <input class="form-check-input" type="checkbox" value=""
+                                    id="{{platform.platformCod}}" ng-click="filters('{{platform.platformCod}}', 'platform')" ng-checked="platform.prop == 'checked'" ng-disabled="platform.prop == 'disabled'">
                                 <label class="form-check-label" data-tr="{{platform.platformCod}}"
                                     for="{{platform.platformCod}}">
-                                    {{platform.platformName}}
+                                    {{platform.platformName}}<span>({{platform.total}})</span>
                                 </label>
                             </div>
                         </div>
@@ -22,11 +22,11 @@
                     <div class="genre">
                         <h3 data-tr="genre">Genre</h3>
                         <div class="form-check filters-genres">
-                            <div class="genre-filter" ng-repeat="genre in arrFilters">
-                                <input class="form-check-input" type="checkbox" value="" id="{{genre.genreName}}">
+                            <div class="genre-filter" ng-repeat="genre in allGenres">
+                                <input class="form-check-input" type="checkbox" value="" id="{{genre.genreName}}" ng-click="filters('{{genre.genreName}}', 'genre')" ng-checked="genre.prop == 'checked'" ng-disabled="genre.prop == 'disabled'">
                                 <label class="form-check-label" data-tr="{{genre.genreName}}" for="{{genre.genreName}}">
                                     {{genre.genreName}}
-                                </label><span>(soon)</span>
+                                </label><span>({{genre.total}})</span>
                             </div>
                         </div>
                     </div>
@@ -42,9 +42,9 @@
                                 <div class="product-details" id="{{game.gameCod}}">
                                     <span class="fw-bold d-block game-name"
                                         style="display:inline-block">{{game.gameName}}</span>
-                                    <span data-tr="price"></span><span>: <span
+                                    <span data-tr="price"></span><span>Price: <span
                                             class="detail">{{game.price}}€</span></span><br>
-                                    <span data-tr="pgi"></span><span>: <span class="detail">{{game.pgi}}</span></span>
+                                    <span data-tr="pgi"></span><span>PGI: <span class="detail">{{game.pgi}}</span></span>
                                     <div class="buttons d-flex flex-row">
                                         <div class="cart"><i class="fa fa-shopping-cart"></i></div>
                                         <button class="btn btn-success cart-button btn-block" id="{{game.gameCod}}"

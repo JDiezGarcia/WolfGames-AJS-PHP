@@ -55,18 +55,19 @@
 
 			//-------------[ADDING PLATFORM TO QUERIES]--------------\\
 			if ($platformCod) {
-				if (!is_null($genres)) {
-					$sqlAdd .= " AND";
-				} else {
-					$sqlAdd .= " WHERE";
+				foreach ($platformCod as $i => $platform) {
+					if ($i != 0 || !is_null($genres)) {
+						$sqlAdd .= " AND ";
+					} else {
+						$sqlAdd .= " WHERE ";
+					}
+					$sqlAdd .= " EXISTS(
+									SELECT *
+									FROM games_platforms gp
+									WHERE g.gameCod = gp.gameCod
+									AND gp.platformCod='$platform' 
+									)";
 				}
-
-				$sqlAdd .= " EXISTS(
-								SELECT *
-								FROM games_platforms gp
-								WHERE g.gameCod = gp.gameCod
-								AND gp.platformCod='$platformCod' 
-								)";
 			}
 
 			//-------------[ADDING SUBQUERYS TO QUERIES]--------------\\
