@@ -1,4 +1,4 @@
-var wolfgames = angular.module('wolfgames', ['ngRoute', 'ngAnimate', 'ngTouch', 'ngSanitize', 'toastr', 'ui.bootstrap']);
+var wolfgames = angular.module('wolfgames', ['ngRoute', 'ngAnimate', 'ngTouch', 'ngSanitize', 'toastr', 'ui.bootstrap', 'ngAria']);
 //----- TRADUCTION I18N -----\\
 //--- http://jsfiddle.net/arleray/pmbyst0n/ ---\\
 wolfgames.config(['$routeProvider', '$locationProvider',
@@ -23,20 +23,28 @@ wolfgames.config(['$routeProvider', '$locationProvider',
                 controller: "controller_shop",
                 resolve: {
                     games: async function (services, $route) {
-                        var params = $route.current.params;
+                        let params = $route.current.params;
+                        let page = params.page;
+
                         for (var k of ['platforms', 'genres']) {
                             if (k in params && typeof params[k] !== 'object') {
                                 params[k] = [params[k]];
                             }
                         }
-                        var page = params.page;
+
                         if (!page){
                             page = 0;
+                        }else{
+                            page = (page - 1) * 8;
                         }
+
                         if (Object.keys(params).length > 0) {
                             data = await services.get('shop', 'products', { filters: params, offset: page});
                         } else {
                             data = await services.get('shop', 'products', { offset: 0 });
+                        }
+                        if(Object.keys(data.games).length <= 0) {
+                            return null;
                         }
                         return data;
                     }

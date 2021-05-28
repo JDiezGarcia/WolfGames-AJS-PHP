@@ -59,15 +59,31 @@
 
                 <div class="shop-pagination">
                     <nav aria-label="pagination" class="pagination-shop">
-                        <ul class="pagination justify-content-end">
-                            <li class="page-item">
-                                <a class="page-link" aria-disabled="false" data-tr="first" ng-click="changePage(0)">First</a>
+                        <ul class="pagination justify-content-end" style="cursor: pointer;">
+                            <li class="page-item disabled" ng-show="total.actualPage <= 1">
+                                <a class="page-link" aria-disabled="true" data-tr="first">First</a>
                             </li>
-                            <li class="page-item">
-                                <a class="page-link">{{pagination}}</a>
+                            <li class="page-item" ng-show="total.actualPage > 1">
+                                <a class="page-link" aria-disabled="true" data-tr="first" ng-click="changePage('{{total.actualPage}}', 'First')">First</a>
                             </li>
-                            <li class="page-item">
-                                <a class="page-link" aria-disabled="false" ng-click="changePage()" data-tr="last">Last</a>
+                            <li class="page-item" ng-show="total.previousPage >= 1" >
+                                <a class="page-link" ng-click="changePage('{{total.actualPage}}', 'Previous')">{{total.previousPage}}</a>
+                            </li>
+
+                            <li class="page-item active">
+                                <a class="page-link">{{total.actualPage}}</a>
+                            </li>
+
+                            <li class="page-item" ng-show="total.nextPage <= total.pages">
+                                <a class="page-link" ng-click="changePage('{{total.actualPage}}', 'Next')">{{total.nextPage}}</a>
+                            </li>
+
+                            <li class="page-item disabled" ng-show="total.actualPage >= total.pages">
+                                <a class="page-link" data-tr="last">Last</a>
+                            </li>
+
+                            <li class="page-item" ng-show="total.actualPage < total.pages">
+                                <a class="page-link" ng-click="changePage('{{total.actualPage}}','Last','{{total.pages}}')" data-tr="last">Last</a>
                             </li>
                         </ul>
                     </nav>

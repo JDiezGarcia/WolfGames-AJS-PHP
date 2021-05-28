@@ -1,7 +1,6 @@
-wolfgames.controller('controller_shop', function ($scope, $routeParams, $route, services, games) {
+wolfgames.controller('controller_shop', function ($window,$scope, $routeParams, $route, services, games) {
+
     //-----[VARS DECLARATIONS]-----\\
-
-
     var arrGames = games.games;
     var arrPlatforms = games.platforms;
     var arrGenres = games.genres;
@@ -9,13 +8,14 @@ wolfgames.controller('controller_shop', function ($scope, $routeParams, $route, 
     var allGenres = games.allGenres;
     var allPlatforms = games.allPlatforms;
 
+
     //----------[DATA INJECTION]----------\\
     $scope.arrGames = arrGames;
     $scope.arrPlatforms = arrPlatforms;
     $scope.arrGenres = arrGenres;
-    $scope.total = pagination(total);
     $scope.allGenres = checkDisable(allGenres, arrGenres, "genres", "genreName");
     $scope.allPlatforms = checkDisable(allPlatforms, arrPlatforms, "platforms", "platformCod");
+    $scope.total = pagination(total);
 
     //-----------[FILTER ROUTE APPLIES]------------\\
 
@@ -37,7 +37,6 @@ wolfgames.controller('controller_shop', function ($scope, $routeParams, $route, 
             } else {
                 $routeParams[type] = [filter];
             }
-            console.log($route)
             $route.updateParams($routeParams);
             $route.reload();
         }
@@ -54,14 +53,12 @@ wolfgames.controller('controller_shop', function ($scope, $routeParams, $route, 
                         if (allFilters[i][key] === $route.current.params[type][l]) {
                             prop = 'checked';
                             allFilters[i].prop = prop;
-                            console.log(allFilters[i].prop)
                         }
                     }
                 } else {
                     if (allFilters[i][key] === $route.current.params[type]) {
                         prop = 'checked';
                         allFilters[i].prop = prop;
-                        console.log(allFilters[i].prop)
                     }
                 }
             }
@@ -85,13 +82,49 @@ wolfgames.controller('controller_shop', function ($scope, $routeParams, $route, 
 
     //----------[PAGINATION]----------\\
     function pagination(total) {
-
-        let actualPage = $route.current.page;
+        
+        let actualPage = parseInt($route.current.params.page);
         let limit = 8;
-        let totalOffset = Math.ceil(total / limit) -1;
+        let totalOffset = Math.ceil(parseInt(total) / limit) - 1;
+        let object = {};
+        object.pages = totalOffset + 1;
+
+        if (actualPage) {
+            object.actualPage = actualPage;
+            object.nextPage = actualPage + 1;
+            object.previousPage = actualPage - 1;
+        } else {
+            object.previousPage = 0;
+            object.actualPage = 1;
+            object.nextPage = object.actualPage + 1;
+        }
+        return object;
     }
+    //----------[PAGE REDIRECTION]-----------\\
+    $scope.changePage = function (actualPage, action, pages) {
+        actualPage = parseInt(actualPage);
+        switch (action) {
+            case 'First':
+                actualPage = 1;
+                break;
+            case 'Last':
+                actualPage = parseInt(pages);
+                break;
 
+            case 'Next':
+                actualPage = actualPage + 1;
+                break;
 
+            case 'Previous':
+                actualPage = actualPage - 1;
+                break;
+            default:
+                break;
+        }
+        $routeParams.page = actualPage
+        $route.updateParams($routeParams);
+        $route.reload();
+    };
     //----------[PAGE REDIRECTION]-----------\\
     $scope.redirectShopDetails = function (game) {
         location.href = "#/shop/details/" + game;
