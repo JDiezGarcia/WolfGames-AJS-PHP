@@ -7,28 +7,8 @@
         case 'search-bar';
             try{
                 $daosearch = new DAOSearch();
-                $query = base64_decode($_GET['exists']);
+                $query = base64_decode($_GET['query']);
             	$rdo = $daosearch->query_search($query);
-
-            }catch (Exception $e){
-                echo json_encode("error " + $e);
-                exit;
-            }
-            if(!$rdo){
-                echo json_encode("error");
-                exit;
-            }else{
-                echo json_encode($rdo);
-                //echo json_encode("error");
-                exit;
-            }
-            break;
-        
-        case 'exists';
-            try{
-                $daosearch = new DAOSearch();
-                $search = base64_decode($_GET['exists']);
-            	$rdo = $daosearch->exists_search($search);
 
             }catch (Exception $e){
                 echo json_encode("error " + $e);

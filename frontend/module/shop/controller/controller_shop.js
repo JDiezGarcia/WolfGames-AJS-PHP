@@ -1,4 +1,4 @@
-wolfgames.controller('controller_shop', function ($window,$scope, $routeParams, $route, services, games) {
+wolfgames.controller('controller_shop', function ($window, $scope, $routeParams, $route, services, games) {
 
     //-----[VARS DECLARATIONS]-----\\
     var arrGames = games.games;
@@ -7,7 +7,6 @@ wolfgames.controller('controller_shop', function ($window,$scope, $routeParams, 
     var total = games.total;
     var allGenres = games.allGenres;
     var allPlatforms = games.allPlatforms;
-
 
     //----------[DATA INJECTION]----------\\
     $scope.arrGames = arrGames;
@@ -37,6 +36,7 @@ wolfgames.controller('controller_shop', function ($window,$scope, $routeParams, 
             } else {
                 $routeParams[type] = [filter];
             }
+            $routeParams.page = 1;
             $route.updateParams($routeParams);
             $route.reload();
         }
@@ -82,7 +82,7 @@ wolfgames.controller('controller_shop', function ($window,$scope, $routeParams, 
 
     //----------[PAGINATION]----------\\
     function pagination(total) {
-        
+
         let actualPage = parseInt($route.current.params.page);
         let limit = 8;
         let totalOffset = Math.ceil(parseInt(total) / limit) - 1;

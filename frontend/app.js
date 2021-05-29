@@ -1,6 +1,50 @@
 var wolfgames = angular.module('wolfgames', ['ngRoute', 'ngAnimate', 'ngTouch', 'ngSanitize', 'toastr', 'ui.bootstrap', 'ngAria']);
 //----- TRADUCTION I18N -----\\
 //--- http://jsfiddle.net/arleray/pmbyst0n/ ---\\
+wolfgames.run(function ($rootScope, $window, services) {
+
+    //---------[SEARCH-BAR]---------\\
+    $rootScope.searchBar = function () {
+        let query = window.btoa(encodeURIComponent($rootScope.searchQuery));
+        if ($rootScope.searchQuery.length > 0) {
+            services.get('search', 'search-bar', { query: query })
+                .then(function (games) {
+                    $rootScope.noQuery = false;
+                    if (typeof games == 'object') {
+                        $rootScope.noMatch = false;
+                        delete $rootScope.searchGames;
+                        $rootScope.searchGames = games.games;
+                    } else {
+                        $rootScope.noMatch = true;
+                    }
+                }, function (error) {
+                    console.log(error);
+                    $rootScope.noMatch = true;
+                })
+        } else {
+            $rootScope.noQuery = true;
+            console.log("enter")
+        }
+    };
+
+    $rootScope.redirectSearchList = function () {
+        if(!$rootScope.searchQuery){
+            location.href = "#/shop";
+        }else{
+            let query = $rootScope.searchQuery;
+            delete $rootScope.searchQuery;
+            delete $rootScope.searchGames;
+            location.href = "#/shop?search=" + query;
+        }
+    };
+
+    $rootScope.redirectSearchOne = function (game) {
+        delete $rootScope.searchQuery;
+        delete $rootScope.searchGames;
+        location.href = "#/shop/details/"+game;
+    };
+});
+
 wolfgames.config(['$routeProvider', '$locationProvider',
     function ($routeProvider, $locationProvider) {
         $routeProvider
@@ -25,25 +69,29 @@ wolfgames.config(['$routeProvider', '$locationProvider',
                     games: async function (services, $route) {
                         let params = $route.current.params;
                         let page = params.page;
-
-                        for (var k of ['platforms', 'genres']) {
+                        let search = params.search;
+                        for (var k of ['platforms', 'genres', 'search']) {
                             if (k in params && typeof params[k] !== 'object') {
                                 params[k] = [params[k]];
                             }
                         }
-
-                        if (!page){
+                        if (!page) {
                             page = 0;
-                        }else{
+                        } else {
                             page = (page - 1) * 8;
+                        }
+                        
+                        if (search) {
+                            search = window.btoa(encodeURIComponent(search));
+                            console.log(search);
                         }
 
                         if (Object.keys(params).length > 0) {
-                            data = await services.get('shop', 'products', { filters: params, offset: page});
+                            data = await services.get('shop', 'products', { filters: params, offset: page, search: search });
                         } else {
                             data = await services.get('shop', 'products', { offset: 0 });
                         }
-                        if(Object.keys(data.games).length <= 0) {
+                        if (Object.keys(data.games).length <= 0) {
                             return null;
                         }
                         return data;

@@ -38,7 +38,7 @@
 
             <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="navbar-lang">
                 <li class="nav-item">
-                    <select class="form-select" name="lang-select" id="lang-select">
+                    <select class="form-select" name="lang-select" id="lang-select" style="border: none;">
                         <option value="val" data-tr="Valencian">Valenciano</option>
                         <option value="es" data-tr="Spanish">Español</option>
                         <option value="en" data-tr="English">Ingles</option>
@@ -46,19 +46,40 @@
                 </li>
             </ul>
 
-            <div id="navbar-search">
+            <div id="navbar-search" style="margin-right: 20px;">
                 <form class="d-flex searcher">
-                    <div class="container" id="search-container">
-                        <div class="row g-0">
+                    <div class="container" id="search-container" style="width: 300px">
+                        <div class="row g-0" style="width: inherit;">
                             <div class="input-group">
-                                <input class="form-control" id="search-bar" type="search" placeholder="Search"
-                                    aria-label="Search" autocomplete="off">
+                                <input ng-keyup="$event.keyCode !== 13 && searchBar()" class="form-control" id="search-bar" type="text"
+                                    placeholder="Search" aria-label="Search" autocomplete="off" ng-model="$root.searchQuery" ng-keydown="$event.keyCode === 13 && $root.noMatch === false && redirectSearchList()">
                                 <button class="btn btn-outline-success" id="search-button" type="button"
-                                    data-tr="search"></button>
+                                    data-tr="search"><i class="fa fa-search" aria-hidden="true" ng-click="$root.noMatch === false && redirectSearchList()"></i></button>
                             </div>
                         </div>
                         <div class="card overflow-auto" id="searched-items"
-                            style="max-width: 100%; max-height: 200px; position: absolute; z-index: 5;" hidden></div>
+                            style="width: inherit; max-height: 300px; position: absolute; z-index: 5; " ng-hide="$root.noQuery == true">
+                            <span ng-if="$root.noMatch == true">No hay resultados de la busqueda</span>
+                            <ul class="list-group list-group-flush" ng-if="$root.noMatch == false">
+                                <li ng-repeat="searchGame in $root.searchGames" class="list-group-item" ng-click="redirectSearchOne(searchGame.gameCod)">
+                                    <div id="{{searchGame.gameCod}}">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <img style="width:100%" ng-src="/angularjs_php/frontend/view/img/games/{{searchGame.gameImg}}">
+                                            </div>
+                                            <div class="col-8">
+                                                <div class="row">
+                                                    <div style="font-size:18px;" class="col">{{searchGame.gameName}}</div>
+                                                </div>
+                                                <div class="row">
+                                                    <div style="font-weight: bold;" class="col">{{searchGame.price}}€</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </form>
             </div>

@@ -9,7 +9,8 @@
             try{
                 $daoshop = new DAOShop();
                 $filters = json_decode($_GET['filters'] ?? '{}', true);
-            	$rdo = $daoshop->select_products($filters['genres'], $filters['platforms'], $filters['search'], $_GET['offset']);
+                $query = base64_decode($_GET['search']);
+            	$rdo = $daoshop->select_products($filters['genres'], $filters['platforms'], $query , $_GET['offset']);
             }catch (Exception $e){
                 echo json_encode("error " + $e);
                 exit;
